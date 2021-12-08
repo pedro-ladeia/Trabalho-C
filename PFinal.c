@@ -1,38 +1,105 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
-struct Product1 {
-    
+//Criando o Objeto
+
+struct Product {
+    float valor;
+    int cod;
+    char nome[100];
+    int validade;
+    int estoque;
 };
 
 
+//Construindo o Primeiro Objeto
 
-controlarEstoque() {
+constrProd1() {
+    system("cls");
+    struct Product produto1;
+    produto1.valor = 20.50;
+    produto1.cod = 1;
+    //produto1.nome[100] = 'PRODUTO1';  //Alguém faz essa do nome
+    produto1.validade = 2023;
+    produto1.estoque = 76;
+    printf(" O codigo escolhido foi o %d\n Validade do produto: %d\n Quantidade em estoque: %d", produto1.cod, produto1.validade, produto1.estoque);
+    return produto1.valor;
+}
+ 
 
-     printf("Digite o Id do produto\n");
-     
 
- }
-
-
-
-
-
-caixaMercado() {
-    float subTotal;
-    printf("Digite o Id do produto\n");
+//Construindo o Segundo Objeto
+    constrProd2() {
+    system("cls");
+    struct Product produto2;
+    produto2.valor = 64.50;
+    produto2.cod = 2;
+    //produto2.nome[100] = 'PRODUTO2';
+    produto2.validade = 2022;
+    produto2.estoque = 87;
+    printf(" O codigo escolhido foi o %d\n Validade do produto: %d\n Quantidade em estoque: %d", produto2.cod, produto2.validade, produto2.estoque);
     
+}
 
+//Função Obter todos os dados
+
+allData() {
+
+}
+
+
+//Função Controlar Estoque
+// A função menu chama esta função que através do Switch chama a função criadora do objeto que printa as informações necessárias
+controlarEstoque() {
+    system("cls");
+    int id;
+    printf("Digite o codigo do produto para obter informaçoes\n");
+    scanf("%d", &id);
+    switch(id) {
+        case 1: constrProd1();
+                break;
+        case 2: constrProd2();
+                break;      
+        default:
+            break;
+    }
 }
 
 
 
 
+//A definir ainda...
+
+caixaMercado() {
+    float subTotal;
+    int continuar, id;
+    printf("Digite o Id do produto\n");
+    scanf("%d", &id);
+   /* do{
+        printf("Digite o Id do produto\n");
+        switch(id) {
+        case 1: subTotal += ;
+                break; 
+        case 2: subTotal += ;
+                break;    
+        }
+    } while(id != 0);*/
+    printf("O total foi de %f", &subTotal);
+}
+
+
+
+
+//Função Menu
 
 menu() {
     int escolha;
-    printf("1 - Caixa de mercado");
-    printf("2 - Controle de Estoque");
+    printf("1 - Caixa de mercado\n");
+    printf("2 - Controle de Estoque\n");
+    printf("3 - Obter todas as informações\n");
+    printf(">> ");
+    scanf("%d", &escolha);   
     switch (escolha)
     {
     case 1:
@@ -41,12 +108,17 @@ menu() {
     case 2:
         controlarEstoque();
         break;
+    case 3:
+        allData();    
     default:
+        printf("Sistema invalido\n");
         break;
     }
 }
 
+//Função Main
+
 main() {
-    printf("Olá usuário, por favor escolha o sistema a ser utilizado\n");
+    printf("OLA USUARIO, POR FAVOR ESCOLHA O SISTEMA A SER UTILIZADO\n\n");
     menu();
 }
