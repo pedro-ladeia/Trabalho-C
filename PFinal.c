@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 
 //Criando o Objeto
 
@@ -10,12 +11,12 @@ struct Product {
     char nome[100];
     int validade;
     int estoque;
-};
+}produto[100];
 
 
 //Construindo o Primeiro Objeto
 
-constrProd1() {
+/*constrProd1() {
     system("cls");
     struct Product produto1;
     produto1.valor = 20.50;
@@ -40,77 +41,90 @@ constrProd1() {
     produto2.estoque = 87;
     printf(" O codigo escolhido foi o %d\n Validade do produto: %d\n Quantidade em estoque: %d", produto2.cod, produto2.validade, produto2.estoque);
     
+}*/
+
+
+
+//Parte de recebimento de informações de produtos.
+
+alimentaEstoque() {
+    int resposta, acc = 1;
+	printf("---------Ola, bem vindo ao controle de estoque---------\n");
+        do{
+        printf("Digite o Id do produto\n");
+        scanf("%d",&produto[acc].cod);
+        printf("Informe o valor do produto:\n");
+        scanf("%f", &produto[acc].valor);
+        //printf("Informe o nome do produto:\n");
+        //fgets(produto[acc].nome,100,stdin);
+        printf("Informe o ano de validade:\n");
+        scanf("%d", &produto[acc].validade);
+        printf("Informe a quantidade em estoque:\n");
+        scanf("%d",&produto[acc].estoque); 
+        printf("Obrigdo por alimentar o sistema.\n");
+        printf("Gostaria de inserir outro produto?\n");
+	    printf("1 - SIM\n");
+	    printf("Qualquer numero - SAIR\n");
+        scanf("%d",&resposta);
+        acc++;
+        } while (resposta == 1);
+        menu();
+	}//
+	
+
+
+obterInformacoes()  {
+    int escolha, opcMenu, i = 0 ;
+    int sizeArr = sizeof(produto)/sizeof(produto[0]);
+    printf("Digite o codigo do produto\n");
+    scanf("%d", &escolha);
+    do {
+            while(i < sizeArr) {
+                if(produto[escolha].cod == produto[i].cod) {
+                    printf("Quantidade em estoque: %d\n", produto[i].estoque);
+                    //printf(produto[escolha].nome);
+                    printf("Ano de validade: %d\n", produto[i].validade);
+                    printf("Valor do produto: %f\n", produto[i].valor);
+                    printf("Deseja obter informacoes sobre outro produto?\n");
+                    printf("1 - Sim\n");
+                    //system('cls')
+                    } else printf("Produto nao cadastrado\n");
+                    i++;
+                }
+    
+        printf("Deseja obter informacoes de outro produto?\n");
+        printf("1 - Sim\n");
+        printf("Qualquer outro numero - Sair\n");
+        printf(">> ");
+        scanf("%d", &opcMenu);
+    }while(opcMenu == 1);
+           
 }
 
-//Função Obter todos os dados
 
-allData() {
-
-}
 
 
 //Função Controlar Estoque
-// A função menu chama esta função que através do Switch chama a função criadora do objeto que printa as informações necessárias
+
 controlarEstoque() {
     system("cls");
     int id;
-    printf("Digite o codigo do produto para obter informaçoes\n");
+    printf("1 - Alimentar o sistema\n");
+    printf("2 - Obter informacoes de produto\n");
+    printf(">> ");
     scanf("%d", &id);
     switch(id) {
-        case 1: constrProd1();
+        case 1: alimentaEstoque();
                 break;
-        case 2: constrProd2();
+        case 2: obterInformacoes();
                 break;      
         default:
             break;
     }
     
-    /*
-    Parte de recebimento de informações de produtos.
     
-    int x,1,2,r;
-
-	printf("---------Olá,bem vindo ao controle e estoque.---------")
-	
-	for (x=0;x<5;x){
-		printf("Digite o Id do produto\n");
-    scanf("%d",%produto[x].id);
-    printf("\nInforme o valor do produto:");
-    scanf("%f", &produto[x].valor);
-    printf("Informe o nome do produto:");
-    fgets(produto[x].nome,100,stdin);
-    printf("Informe a validade:");
-    scanf("%d", &produto[x].validade);
-    printf("Informe o estoque:")
-    scanf("%d",%produto[x].estoque);
-	}
-	
-	printf("Gostaria de inserir outro produto?");
-	printf("1 = SIM");
-	printf("2 = NÃO");
-	scanf("%d",&r);
-	if(r=1){
-		do{
-		for (x=0;x<5;x){
-			printf("Digite o Id do produto\n");
-    		scanf("%d",%produto[x].id);
-    		printf("\nInforme o valor do produto:");
-    		scanf("%f", &produto[x].valor);
-    		printf("Informe o nome do produto:");
-    		fgets(produto[x].nome,100,stdin);
-    		printf("Informe a validade:");
-    		scanf("%d", &produto[x].validade);
-    		printf("Informe o estoque:")
-    		scanf("%d",%produto[x].estoque);
-		}
-		
-	}while(r=1);
-	}else{
-		("Obrigdo por alimentar o sistema.");
-	}
-	
     
-    */
+    
     
     
 }
@@ -146,7 +160,6 @@ menu() {
     int escolha;
     printf("1 - Caixa de mercado\n");
     printf("2 - Controle de Estoque\n");
-    printf("3 - Obter todas as informações\n");
     printf(">> ");
     scanf("%d", &escolha);   
     switch (escolha)
@@ -156,9 +169,7 @@ menu() {
         break;
     case 2:
         controlarEstoque();
-        break;
-    case 3:
-        allData();    
+        break;   
     default:
         printf("Sistema invalido\n");
         break;
@@ -169,5 +180,6 @@ menu() {
 
 main() {
     printf("OLA USUARIO, POR FAVOR ESCOLHA O SISTEMA A SER UTILIZADO\n\n");
+    _sleep(1000);
     menu();
 }
