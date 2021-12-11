@@ -64,6 +64,55 @@ controlarEstoque() {
         default:
             break;
     }
+    
+    /*
+    Parte de recebimento de informações de produtos.
+    
+    int x,1,2,r;
+
+	printf("---------Olá,bem vindo ao controle e estoque.---------")
+	
+	for (x=0;x<5;x){
+		printf("Digite o Id do produto\n");
+    scanf("%d",%produto[x].id);
+    printf("\nInforme o valor do produto:");
+    scanf("%f", &produto[x].valor);
+    printf("Informe o nome do produto:");
+    fgets(produto[x].nome,100,stdin);
+    printf("Informe a validade:");
+    scanf("%d", &produto[x].validade);
+    printf("Informe o estoque:")
+    scanf("%d",%produto[x].estoque);
+	}
+	
+	printf("Gostaria de inserir outro produto?");
+	printf("1 = SIM");
+	printf("2 = NÃO");
+	scanf("%d",&r);
+	if(r=1){
+		do{
+		for (x=0;x<5;x){
+			printf("Digite o Id do produto\n");
+    		scanf("%d",%produto[x].id);
+    		printf("\nInforme o valor do produto:");
+    		scanf("%f", &produto[x].valor);
+    		printf("Informe o nome do produto:");
+    		fgets(produto[x].nome,100,stdin);
+    		printf("Informe a validade:");
+    		scanf("%d", &produto[x].validade);
+    		printf("Informe o estoque:")
+    		scanf("%d",%produto[x].estoque);
+		}
+		
+	}while(r=1);
+	}else{
+		("Obrigdo por alimentar o sistema.");
+	}
+	
+    
+    */
+    
+    
 }
 
 
