@@ -97,21 +97,32 @@ controlarEstoque()
 
 caixaMercado()
 {
+    system("cls");
     float subTotal = 0;
-    int continuar, codEscolhido, i;
-    printf("Digite o Id do produto\n");
-    scanf("%d", &codEscolhido);
-    for (i = 0; i < 10; i++)
+    int opcMenu, codEscolhido, i;
+    do
     {
-        if (codEscolhido == produtos[i].cod) {
-            subTotal += produtos[i].valor;
-            printf("Subtotal = %f", subTotal);
+        printf("Digite o Id do produto\n");
+        scanf("%d", &codEscolhido);
+        system("cls");
+        printf("** LENDO CODIGO DE BARRAS **\n");
+        _sleep(1300);
+        system("cls");
+        for (i = 0; i < 10; i++)
+        {
+            if (codEscolhido == produtos[i].cod)
+            {
+                subTotal += produtos[i].valor;
+                printf("Subtotal = %.2f\n", subTotal);
+            }
         }
-        printf("Deseja adcionar outro produto?");
-        
-    }
-
-    printf("O total foi de %f", &subTotal);
+        printf("Deseja adcionar outro produto?\n");
+        printf("1 - Sim\n");
+        printf("Qualquer outro numero - Sair\n");
+        printf(">> ");
+        scanf("%d", &opcMenu);
+    } while (opcMenu == 1);
+    printf("O total foi de %.2f", &subTotal);
 }
 
 // Função Menu
@@ -121,7 +132,7 @@ menu()
     int escolha;
     printf("1 - Caixa de mercado\n");
     printf("2 - Controle de Estoque\n");
-    printf("3 - Sair");
+    printf("3 - Sair\n");
     printf(">> ");
     scanf("%d", &escolha);
     switch (escolha)
